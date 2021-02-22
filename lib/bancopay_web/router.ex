@@ -7,6 +7,8 @@ defmodule BancopayWeb.Router do
 
   scope "/api", BancopayWeb do
     pipe_through :api
+
+    get "/:filename", WelcomeController, :index
   end
 
   # Enables LiveDashboard only for development
