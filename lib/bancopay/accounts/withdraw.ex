@@ -1,10 +1,10 @@
-defmodule Bancopay.Account.Deposit do
+defmodule Bancopay.Account.Withdraw do
   alias Bancopay.Account.Operation
   alias Bancopay.Repo
 
   def call(params) do
     params
-    |> Operation.call(:deposit)
+    |> Operation.call(:withdraw)
     |> run_transaction()
   end
 
