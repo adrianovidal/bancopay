@@ -9,7 +9,6 @@ defmodule BancopayWeb.ErrorViewTest do
   end
 
   test "renders 500.json" do
-    assert render(BancopayWeb.ErrorView, "500.json", []) ==
-             %{errors: %{detail: "Internal Server Error"}}
+    assert render(BancopayWeb.ErrorView, "500.json", []) == %{errors: %{detail: "Internal Server Error"}}
   end
 end

@@ -1,5 +1,5 @@
-defmodule Bancopay.Account.Withdraw do
-  alias Bancopay.Account.Operation
+defmodule Bancopay.Accounts.Withdraw do
+  alias Bancopay.Accounts.Operation
   alias Bancopay.Repo
 
   def call(params) do

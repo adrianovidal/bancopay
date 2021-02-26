@@ -1,7 +1,7 @@
-defmodule Bancopay.Account.Operation do
+defmodule Bancopay.Accounts.Operation do
   alias Ecto.Multi
 
-  alias Bancopay.{Account, Repo}
+  alias Bancopay.Account
 
   def call(%{"id" => id, "value" => value}, operation) do
     operation_name = account_operation_name(operation)
@@ -10,7 +10,7 @@ defmodule Bancopay.Account.Operation do
     |> Multi.run(operation, fn repo, changes ->
       account = Map.get(changes, operation_name)
 
-      update_balance(repo, account, value,operation) end)
+    update_balance(repo, account, value, operation) end)
   end
 
   defp get_account(repo, id) do
@@ -33,7 +33,7 @@ defmodule Bancopay.Account.Operation do
   end
 
   defp handle_cast({:ok, value}, balance, :deposit), do: Decimal.add(balance, value)
-  defp handle_cast({:ok, value}, balance, :withdraw), do: Decimal.add(balance, value)
+  defp handle_cast({:ok, value}, balance, :withdraw), do: Decimal.sub(balance, value)
   defp handle_cast(:error, _balance, _operation), do: {:error, "Invalid deposit value!"}
 
   defp update_account({:error, _reason} = error, _repo, _account), do: error
@@ -43,13 +43,6 @@ defmodule Bancopay.Account.Operation do
     account
     |> Account.changeset(params)
     |> repo.update
-  end
-
-  defp run_transaction(multi) do
-    case Repo.transaction(multi) do
-      {:error, _operation, reason, _changes} -> {:error, reason}
-      {:ok, %{update_balance: account}} -> {:ok, account}
-    end
   end
 
   defp account_operation_name(operation) do

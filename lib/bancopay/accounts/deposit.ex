@@ -1,5 +1,5 @@
-defmodule Bancopay.Account.Deposit do
-  alias Bancopay.Account.Operation
+defmodule Bancopay.Accounts.Deposit do
+  alias Bancopay.Accounts.Operation
   alias Bancopay.Repo
 
   def call(params) do
@@ -10,8 +10,11 @@ defmodule Bancopay.Account.Deposit do
 
   defp run_transaction(multi) do
     case Repo.transaction(multi) do
-      {:error, _operation, reason, _changes} -> {:error, reason}
-      {:ok, %{withdraw: account}} -> {:ok, account}
+      {:error, _operation, reason, _changes} ->
+        {:error, reason}
+
+      {:ok, %{deposit: account}} ->
+        {:ok, account}
     end
   end
 end

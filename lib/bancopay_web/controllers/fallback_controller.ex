@@ -1,4 +1,4 @@
-defmodule BancopayWeb.FallabckController do
+defmodule BancopayWeb.FallbackController do
   use BancopayWeb, :controller
 
   def call(conn, {:error, result}) do
@@ -7,5 +7,4 @@ defmodule BancopayWeb.FallabckController do
     |> put_view(BancopayWeb.ErrorView)
     |> render("400.json", result: result)
   end
-
 end

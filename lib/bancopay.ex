@@ -1,7 +1,7 @@
 defmodule Bancopay do
   alias Bancopay.Users.Create, as: UserCreate
 
-  alias Bancopay.Account.{Deposit, Withdraw, Transactions}
+  alias Bancopay.Accounts.{Deposit, Withdraw, Transactions}
 
   defdelegate create_user(params), to: UserCreate, as: :call
 

@@ -1,4 +1,4 @@
-defmodule Bancopay.Account.Transactions.Response do
+defmodule Bancopay.Accounts.Transactions.Response do
   alias Bancopay.Account
 
   defstruct [:from_account, :to_account]

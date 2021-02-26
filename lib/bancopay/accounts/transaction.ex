@@ -1,8 +1,8 @@
-defmodule Bancopay.Account.Transactions do
+defmodule Bancopay.Accounts.Transactions do
   alias Ecto.Multi
   alias Bancopay.Repo
-  alias Bancopay.Account.Operation
-  alias Bancopay.Account.Transactions.Response, as: TransactionResponse
+  alias Bancopay.Accounts.Operation
+  alias Bancopay.Accounts.Transactions.Response, as: TransactionResponse
 
   def call(%{"from" => from_id, "to" => to_id, "value" => value}) do
     withdraw_params = build_params(from_id, value)
