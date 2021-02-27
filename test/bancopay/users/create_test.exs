@@ -1,5 +1,5 @@
 defmodule Bancopay.Users.CreateTest do
-  use Bancopay.DataCase
+  use Bancopay.DataCase, async: true
 
   alias Bancopay.User
   alias Bancopay.Users.Create

@@ -2,7 +2,6 @@ defmodule Bancopay.Users.Create do
   alias Bancopay.{Account, Repo, User}
   alias Ecto.Multi
 
-
   def call(params) do
     Multi.new()
     |> Multi.insert(:create_user, User.changeset(params))

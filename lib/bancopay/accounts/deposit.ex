@@ -13,8 +13,7 @@ defmodule Bancopay.Accounts.Deposit do
       {:error, _operation, reason, _changes} ->
         {:error, reason}
 
-      {:ok, %{deposit: account}} ->
-        {:ok, account}
+      {:ok, %{deposit: account}} -> {:ok, account}
     end
   end
 end
